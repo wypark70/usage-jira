@@ -1,0 +1,40 @@
+<atlassian-plugin key="${atlassian.plugin.key}" name="${project.name}" plugins-version="2">
+  <plugin-info>
+    <description>${project.description}</description>
+    <version>${project.version}</version>
+    <vendor name="${project.organization.name}" url="${project.organization.url}"/>
+    <param name="plugin-icon">images/pluginIcon.png</param>
+    <param name="plugin-logo">images/pluginLogo.png</param>
+  </plugin-info>
+
+  <resource type="i18n" name="i18n" location="jira-usage"/>
+
+  <web-resource key="admin-web-resources" name="Admin Web Resources">
+    <dependency>com.atlassian.auiplugin:ajs</dependency>
+    <resource type="download" name="admin.css" location="/css/admin.css"/>
+    <resource type="download" name="admin.js" location="/js/admin.js"/>
+    <resource type="download" name="images/" location="/images"/>
+    <context>usage-jira-admin</context>
+  </web-resource>
+  <rest key="rest" name="Admin Rest" path="/usage-jira/admin" version="1.0">
+    <description>Provides REST resources for the admin UI.</description>
+  </rest>
+  <servlet
+      name="Admin Servlet"
+      i18n-name-key="usage-jira-admin-configuration.name"
+      key="usage-jira-admin-configuration"
+      class="com.sds.jira.plugin.usage.servlet.AdminServlet">
+    <description key="usage-jira-admin-configuration.description">Usage User Config Servlet</description>
+    <url-pattern>/usage-jira/configuration</url-pattern>
+  </servlet>
+  <web-item
+      key="jira-menu-item"
+      name="Admin Web Item"
+      section="system.admin/globalsettings"
+      weight="10"
+      application="jira">
+    <description>Link to Usage jira admin page.</description>
+    <label key="usage-jira-admin-configuration.label"/>
+    <link linkId="usage-jira-config-link">/plugins/servlet/usage-jira/configuration</link>
+  </web-item>
+</atlassian-plugin>

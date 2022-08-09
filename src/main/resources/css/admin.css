@@ -1,0 +1,9 @@
+.text {
+  width: 80% !important;
+  margin-left: 18px !important;
+  max-width: none !important;
+}
+
+.field-group > label {
+  width: 180px !important;
+}
