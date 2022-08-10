@@ -67,7 +67,7 @@ public class ConfigResource {
   @Consumes(MediaType.APPLICATION_JSON)
   public Response put(final UsageJiraConfig config, @Context HttpServletRequest request) {
     if (isNotSystemAdmin()) return Response.status(HttpServletResponse.SC_FORBIDDEN).build();
-    UsageJiraConfigChecker.checkUserReportConfig(config);
+    UsageJiraConfigChecker.checkUsageJiraConfig(config);
     transactionTemplate.execute(() -> {
       PluginSettings pluginSettings = pluginSettingsFactory.createGlobalSettings();
       pluginSettings.put(CLASS_NAME + ".host", config.getHost());

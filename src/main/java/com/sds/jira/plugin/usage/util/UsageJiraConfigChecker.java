@@ -9,7 +9,7 @@ public final class UsageJiraConfigChecker {
   private UsageJiraConfigChecker() {
   }
 
-  public static void checkUserReportConfig(UsageJiraConfig config) throws UsageJiraConfigException {
+  public static void checkUsageJiraConfig(UsageJiraConfig config) throws UsageJiraConfigException {
     StringBuilder sb = new StringBuilder();
     if (StringUtils.isBlank(config.getHost())) {
       sb.append("Host is not set up!").append(System.lineSeparator());

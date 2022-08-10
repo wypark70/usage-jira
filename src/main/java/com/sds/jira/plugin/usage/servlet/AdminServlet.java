@@ -60,7 +60,7 @@ public class AdminServlet extends HttpServlet {
     pageBuilderService
         .assembler()
         .resources()
-        .requireWebResource("com.sds.jira.plugin.jira-usage:admin-web-resources")
+        .requireWebResource("com.sds.jira.plugin.usage-jira:admin-web-resources")
         .requireContext("atl.admin");
     resp.setContentType("text/html;charset=utf-8");
     templateRenderer.render(ADMIN_TEMPLATE, resp.getWriter());

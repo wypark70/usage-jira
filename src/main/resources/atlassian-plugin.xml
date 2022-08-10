@@ -7,7 +7,7 @@
     <param name="plugin-logo">images/pluginLogo.png</param>
   </plugin-info>
 
-  <resource type="i18n" name="i18n" location="jira-usage"/>
+  <resource type="i18n" name="i18n" location="usage-jira"/>
 
   <web-resource key="admin-web-resources" name="Admin Web Resources">
     <dependency>com.atlassian.auiplugin:ajs</dependency>
@@ -16,17 +16,20 @@
     <resource type="download" name="images/" location="/images"/>
     <context>usage-jira-admin</context>
   </web-resource>
+
   <rest key="rest" name="Admin Rest" path="/usage-jira/admin" version="1.0">
     <description>Provides REST resources for the admin UI.</description>
   </rest>
+
   <servlet
       name="Admin Servlet"
       i18n-name-key="usage-jira-admin-configuration.name"
       key="usage-jira-admin-configuration"
       class="com.sds.jira.plugin.usage.servlet.AdminServlet">
-    <description key="usage-jira-admin-configuration.description">Usage User Config Servlet</description>
+    <description key="usage-jira-admin-configuration.description">Usage Jira Config Servlet</description>
     <url-pattern>/usage-jira/configuration</url-pattern>
   </servlet>
+
   <web-item
       key="jira-menu-item"
       name="Admin Web Item"
