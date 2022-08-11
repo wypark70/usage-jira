@@ -13,7 +13,6 @@ import com.sds.jira.plugin.usage.config.UsageJiraConfig;
 import com.sds.jira.plugin.usage.domain.SystemInfo;
 import com.sds.jira.plugin.usage.domain.UserCount;
 import com.sds.jira.plugin.usage.domain.UserCountRequest;
-import lombok.extern.slf4j.Slf4j;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -27,7 +26,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-@Slf4j
 public class UserCountService extends AbstractService {
   private static final String CLASS_NAME = UsageJiraConfig.class.getName();
   private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
@@ -56,9 +54,9 @@ public class UserCountService extends AbstractService {
     UserCountRequest userCountRequest = new UserCountRequest();
     userCountRequest.setInfo(systemInfo);
     userCountRequest.setList(userCountList);
-    log.debug(">>>>>>> userCountApiUrl: " + userCountApiUrl);
-    log.debug(">>>>>>> userCountApiKey: " + userCountApiKey);
-    log.debug(gson.toJson(userCountRequest));
+    System.out.println(">>>>>>> userCountApiUrl: " + userCountApiUrl);
+    System.out.println(">>>>>>> userCountApiKey: " + userCountApiKey);
+    System.out.println(gson.toJson(userCountRequest));
     postUserCountReport(userCountApiUrl, userCountApiKey, userCountRequest);
   }
 
@@ -87,7 +85,7 @@ public class UserCountService extends AbstractService {
         stringBuilder.append(line);
       }
 
-      log.debug(stringBuilder.toString());
+      System.out.println(stringBuilder);
 
     } catch (Exception e) {
       e.printStackTrace();

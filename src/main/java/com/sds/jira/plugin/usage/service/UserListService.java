@@ -62,9 +62,9 @@ public class UserListService extends AbstractService {
     UserInfoRequest userInfoRequest = new UserInfoRequest();
     userInfoRequest.setInfo(systemInfo);
     userInfoRequest.setList(userInfoList);
-    log.debug(">>>>>>> userListApiUrl: " + userListApiUrl);
-    log.debug(">>>>>>> userListApiKey: " + userListApiKey);
-    log.debug(gson.toJson(userInfoRequest));
+    System.out.println(">>>>>>> userListApiUrl: " + userListApiUrl);
+    System.out.println(">>>>>>> userListApiKey: " + userListApiKey);
+    System.out.println(gson.toJson(userInfoRequest));
     postUserInfoReport(userListApiUrl, userListApiKey, userInfoRequest);
   }
 
@@ -93,7 +93,7 @@ public class UserListService extends AbstractService {
         stringBuilder.append(line);
       }
 
-      log.debug(stringBuilder);
+      System.out.println(stringBuilder);
 
     } catch (Exception e) {
       e.printStackTrace();
