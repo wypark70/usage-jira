@@ -54,9 +54,9 @@ public class UserCountService extends AbstractService {
     UserCountRequest userCountRequest = new UserCountRequest();
     userCountRequest.setInfo(systemInfo);
     userCountRequest.setList(userCountList);
-    System.out.println(">>>>>>> userCountApiUrl: " + userCountApiUrl);
-    System.out.println(">>>>>>> userCountApiKey: " + userCountApiKey);
-    System.out.println(gson.toJson(userCountRequest));
+    log.debug(">>>>>>> userCountApiUrl: " + userCountApiUrl);
+    log.debug(">>>>>>> userCountApiKey: " + userCountApiKey);
+    log.debug(gson.toJson(userCountRequest));
     postUserCountReport(userCountApiUrl, userCountApiKey, userCountRequest);
   }
 
@@ -85,7 +85,7 @@ public class UserCountService extends AbstractService {
         stringBuilder.append(line);
       }
 
-      System.out.println(stringBuilder);
+      log.debug(stringBuilder);
 
     } catch (Exception e) {
       e.printStackTrace();
