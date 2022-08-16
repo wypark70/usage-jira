@@ -6,6 +6,7 @@ public class UserInfo {
   String userId;
   String userName;
   String email;
+  String tenantCode;
 
   public String getLookupTime() {
     return lookupTime;
@@ -45,5 +46,13 @@ public class UserInfo {
 
   public void setEmail(String email) {
     this.email = email;
+  }
+
+  public String getTenantCode() {
+    return tenantCode;
+  }
+
+  public void setTenantCode(String tenantCode) {
+    this.tenantCode = tenantCode;
   }
 }

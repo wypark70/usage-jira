@@ -11,56 +11,63 @@
         Host
         <span class="aui-icon icon-required"></span>
       </label>
-      <input type="text" id="host" name="domain" class="text">
+      <input type="text" id="host" name="host" class="text">
     </div>
     <div class="field-group">
       <label for="ip">
         IP
         <span class="aui-icon icon-required"></span>
       </label>
-      <input type="text" id="ip" name="client-id" class="text">
+      <input type="text" id="ip" name="ip" class="text">
     </div>
     <div class="field-group">
       <label for="port">
         Port
         <span class="aui-icon icon-required"></span>
       </label>
-      <input type="text" id="port" name="client-secret" class="text">
+      <input type="text" id="port" name="port" class="text">
     </div>
     <div class="field-group">
       <label for="product-code">
         Product Code
         <span class="aui-icon icon-required"></span>
       </label>
-      <input type="text" id="product-code" name="client-secret" class="text">
+      <input type="text" id="product-code" name="product-code" class="text">
+    </div>
+    <div class="field-group">
+      <label for="tenant-code">
+        Tenant Code
+        <span class="aui-icon icon-required"></span>
+      </label>
+      <input type="text" id="tenant-code" name="tenant-code" class="text">
     </div>
     <div class="field-group">
       <label for="user-list-api-url">
         User list API URL
         <span class="aui-icon icon-required"></span>
       </label>
-      <input type="text" id="user-list-api-url" name="client-secret" class="text">
+      <input type="text" id="user-list-api-url" name="user-list-api-url" class="text">
     </div>
     <div class="field-group">
       <label for="user-list-api-key">
         User list API Key
         <span class="aui-icon icon-required"></span>
       </label>
-      <input type="text" id="user-list-api-key" name="client-secret" class="text">
+      <input type="text" id="user-list-api-key" name="user-list-api-key" class="text">
     </div>
     <div class="field-group">
       <label for="user-count-api-url">
         User count API URL
         <span class="aui-icon icon-required"></span>
       </label>
-      <input type="text" id="user-count-api-url" name="client-secret" class="text">
+      <input type="text" id="user-count-api-url" name="user-count-api-url" class="text">
     </div>
     <div class="field-group">
       <label for="user-count-api-key">
         User count API Key
         <span class="aui-icon icon-required"></span>
       </label>
-      <input type="text" id="user-count-api-key" name="client-secret" class="text">
+      <input type="text" id="user-count-api-key" name="user-count-api-key" class="text">
     </div>
     <div class="form-footer">
       <div class="buttons-container">

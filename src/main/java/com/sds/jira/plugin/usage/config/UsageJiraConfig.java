@@ -24,6 +24,9 @@ public class UsageJiraConfig {
   private String productCode;
 
   @XmlElement
+  private String tenantCode;
+
+  @XmlElement
   private String userListApiUrl;
 
   @XmlElement
@@ -65,6 +68,14 @@ public class UsageJiraConfig {
 
   public void setProductCode(String productCode) {
     this.productCode = productCode;
+  }
+
+  public String getTenantCode() {
+    return tenantCode;
+  }
+
+  public void setTenantCode(String tenantCode) {
+    this.tenantCode = tenantCode;
   }
 
   public String getUserListApiUrl() {
