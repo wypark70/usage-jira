@@ -24,6 +24,9 @@ public class UsageJiraConfig {
   private String productCode;
 
   @XmlElement
+  private String module;
+
+  @XmlElement
   private String tenantCode;
 
   @XmlElement
@@ -68,6 +71,14 @@ public class UsageJiraConfig {
 
   public void setProductCode(String productCode) {
     this.productCode = productCode;
+  }
+
+  public String getModule() {
+    return module;
+  }
+
+  public void setModule(String module) {
+    this.module = module;
   }
 
   public String getTenantCode() {

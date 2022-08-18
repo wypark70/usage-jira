@@ -52,6 +52,7 @@ public class UserListService extends AbstractService {
     Collection<ApplicationUser> allUsers = userUtil.getAllApplicationUsers();
     String lookupTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
     String tenantCode = (String) settings.get(CLASS_NAME + ".tenantCode");
+    String module = (String) settings.get(CLASS_NAME + ".module");
     allUsers.forEach(applicationUser -> {
       UserInfo userInfo = new UserInfo();
       userInfo.setLookupTime(lookupTime);
@@ -59,6 +60,7 @@ public class UserListService extends AbstractService {
       userInfo.setUserId(applicationUser.getName());
       userInfo.setUserName(applicationUser.getDisplayName());
       userInfo.setTenantCode(tenantCode);
+      userInfo.setModule(module);
       userInfoList.add(userInfo);
     });
 

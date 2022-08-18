@@ -23,6 +23,9 @@ public final class UsageJiraConfigChecker {
     if (StringUtils.isBlank(config.getProductCode())) {
       sb.append("Product code is not set up! ").append(System.lineSeparator());
     }
+    if (StringUtils.isBlank(config.getModule())) {
+      sb.append("Module is not set up! ").append(System.lineSeparator());
+    }
     if (StringUtils.isBlank(config.getTenantCode())) {
       sb.append("Tenant code is not set up! ").append(System.lineSeparator());
     }

@@ -35,6 +35,13 @@
       <input type="text" id="product-code" name="product-code" class="text">
     </div>
     <div class="field-group">
+      <label for="module">
+        Module
+        <span class="aui-icon icon-required"></span>
+      </label>
+      <input type="text" id="module" name="module" class="text">
+    </div>
+    <div class="field-group">
       <label for="tenant-code">
         Tenant Code
         <span class="aui-icon icon-required"></span>

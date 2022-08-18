@@ -11,6 +11,7 @@
       $("#ip").val(config.ip);
       $("#port").val(config.port);
       $("#product-code").val(config.productCode);
+      $("#module").val(config.module);
       $("#tenant-code").val(config.tenantCode);
       $("#user-list-api-url").val(config.userListApiUrl);
       $("#user-list-api-key").val(config.userListApiKey);
@@ -30,6 +31,7 @@
       ip: $("#ip").val().trim(),
       port: $("#port").val().trim(),
       productCode: $("#product-code").val().trim(),
+      module: $("#module").val().trim(),
       tenantCode: $("#tenant-code").val().trim(),
       userListApiUrl: $("#user-list-api-url").val().trim(),
       userListApiKey: $("#user-list-api-key").val().trim(),

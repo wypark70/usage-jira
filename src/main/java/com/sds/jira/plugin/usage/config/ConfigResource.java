@@ -55,6 +55,7 @@ public class ConfigResource {
       config.setIp((String) settings.get(CLASS_NAME + ".ip"));
       config.setPort((String) settings.get(CLASS_NAME + ".port"));
       config.setProductCode((String) settings.get(CLASS_NAME + ".productCode"));
+      config.setModule((String) settings.get(CLASS_NAME + ".module"));
       config.setTenantCode((String) settings.get(CLASS_NAME + ".tenantCode"));
       config.setUserListApiUrl((String) settings.get(CLASS_NAME + ".userListApiUrl"));
       config.setUserListApiKey((String) settings.get(CLASS_NAME + ".userListApiKey"));
@@ -75,6 +76,7 @@ public class ConfigResource {
       pluginSettings.put(CLASS_NAME + ".ip", config.getIp());
       pluginSettings.put(CLASS_NAME + ".port", config.getPort());
       pluginSettings.put(CLASS_NAME + ".productCode", config.getProductCode());
+      pluginSettings.put(CLASS_NAME + ".module", config.getModule());
       pluginSettings.put(CLASS_NAME + ".tenantCode", config.getTenantCode());
       pluginSettings.put(CLASS_NAME + ".userListApiUrl", config.getUserListApiUrl());
       pluginSettings.put(CLASS_NAME + ".userListApiKey", config.getUserListApiKey());
