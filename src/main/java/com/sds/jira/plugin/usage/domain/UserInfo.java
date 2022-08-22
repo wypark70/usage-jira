@@ -7,7 +7,6 @@ public class UserInfo {
   String userName;
   String email;
   String tenantCode;
-
   String module;
 
   public String getLookupTime() {
