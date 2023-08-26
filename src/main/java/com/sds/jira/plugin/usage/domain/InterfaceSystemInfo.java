@@ -1,6 +1,6 @@
 package com.sds.jira.plugin.usage.domain;
 
-public class SystemInfo {
+public class InterfaceSystemInfo {
   private String host;
   private String ip;
   private String port;

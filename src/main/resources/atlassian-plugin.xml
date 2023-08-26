@@ -11,8 +11,8 @@
 
   <web-resource key="admin-web-resources" name="Admin Web Resources">
     <dependency>com.atlassian.auiplugin:ajs</dependency>
-    <resource type="download" name="admin.css" location="/css/admin.css"/>
-    <resource type="download" name="admin.js" location="/js/admin.js"/>
+    <resource type="download" name="usage-jira-configuration.css" location="/css/usage-jira-configuration.css"/>
+    <resource type="download" name="usage-jira-configuration.js" location="/js/usage-jira-configuration.js"/>
     <resource type="download" name="images/" location="/images"/>
     <context>usage-jira-admin</context>
   </web-resource>
@@ -25,7 +25,7 @@
       name="Admin Servlet"
       i18n-name-key="usage-jira-admin-configuration.name"
       key="usage-jira-admin-configuration"
-      class="com.sds.jira.plugin.usage.servlet.AdminServlet">
+      class="com.sds.jira.plugin.usage.servlet.UsageJiraConfigurationServlet">
     <description key="usage-jira-admin-configuration.description">Usage Jira Config Servlet</description>
     <url-pattern>/usage-jira/configuration</url-pattern>
   </servlet>

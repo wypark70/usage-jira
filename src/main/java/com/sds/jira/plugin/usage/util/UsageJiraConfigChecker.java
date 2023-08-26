@@ -1,7 +1,7 @@
 package com.sds.jira.plugin.usage.util;
 
-import com.sds.jira.plugin.usage.config.UsageJiraConfig;
-import com.sds.jira.plugin.usage.config.UsageJiraConfigException;
+import com.sds.jira.plugin.usage.config.UsageJiraConfiguration;
+import com.sds.jira.plugin.usage.config.UsageJiraConfigurationException;
 import org.apache.commons.lang3.StringUtils;
 
 public final class UsageJiraConfigChecker {
@@ -9,7 +9,7 @@ public final class UsageJiraConfigChecker {
   private UsageJiraConfigChecker() {
   }
 
-  public static void checkUsageJiraConfig(UsageJiraConfig config) throws UsageJiraConfigException {
+  public static void checkUsageJiraConfig(UsageJiraConfiguration config) throws UsageJiraConfigurationException {
     StringBuilder sb = new StringBuilder();
     if (StringUtils.isBlank(config.getHost())) {
       sb.append("Host is not set up!").append(System.lineSeparator());
@@ -42,7 +42,7 @@ public final class UsageJiraConfigChecker {
       sb.append("User count API Key is not set up! ").append(System.lineSeparator());
     }
     if (sb.length() > 0) {
-      throw new UsageJiraConfigException(sb.toString());
+      throw new UsageJiraConfigurationException(sb.toString());
     }
   }
 

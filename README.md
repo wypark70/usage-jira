@@ -45,7 +45,7 @@ https://developer.atlassian.com/display/DOCS/Introduction+to+the+Atlassian+Plugi
 ## Usage user list 서비스 등록
 ```text
 이름: Usage Jira List Service
-클래스: com.sds.jira.plugin.usage.service.UserListService
+클래스: com.sds.jira.plugin.usage.service.JiraUserListService
 일정: 매일
 간격: 하루에 한 번
 시간: 오전 11:30
@@ -53,7 +53,7 @@ https://developer.atlassian.com/display/DOCS/Introduction+to+the+Atlassian+Plugi
 ## Usage user count 서비스 등록
 ```text
 이름: Usage Jira Count Service
-클래스: com.sds.jira.plugin.usage.service.UserCountService
+클래스: com.sds.jira.plugin.usage.service.JiraUserCountService
 일정: 매일
 간격: 매 2시간마다
 시작: 오전 11:00

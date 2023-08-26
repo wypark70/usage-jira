@@ -9,7 +9,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
-public class UsageJiraConfig {
+public class UsageJiraConfiguration {
 
   @XmlElement
   private String host;

@@ -6,7 +6,6 @@ import com.atlassian.jira.plugin.webfragment.conditions.cache.RequestCachingCond
 import com.atlassian.jira.security.GlobalPermissionManager;
 import com.atlassian.jira.security.JiraAuthenticationContext;
 import com.atlassian.jira.user.ApplicationUser;
-import com.atlassian.plugin.spring.scanner.annotation.component.Scanned;
 import com.atlassian.plugin.spring.scanner.annotation.imports.ComponentImport;
 import com.atlassian.plugin.spring.scanner.annotation.imports.JiraImport;
 import com.atlassian.templaterenderer.TemplateRenderer;
@@ -17,10 +16,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@Scanned
-public class AdminServlet extends HttpServlet {
+public class UsageJiraConfigurationServlet extends HttpServlet {
 
-  private static final String ADMIN_TEMPLATE = "/templates/admin.vm";
+  private static final String ADMIN_TEMPLATE = "/templates/usage-jira-configuration.vm";
 
   @ComponentImport
   private final PageBuilderService pageBuilderService;
@@ -34,7 +32,7 @@ public class AdminServlet extends HttpServlet {
   @JiraImport
   private final TemplateRenderer templateRenderer;
 
-  public AdminServlet(
+  public UsageJiraConfigurationServlet(
       PageBuilderService pageBuilderService,
       GlobalPermissionManager permissionManager,
       JiraAuthenticationContext authenticationContext,
@@ -57,11 +55,6 @@ public class AdminServlet extends HttpServlet {
       resp.setStatus(HttpServletResponse.SC_FORBIDDEN);
       return;
     }
-    pageBuilderService
-        .assembler()
-        .resources()
-        .requireWebResource("com.sds.jira.plugin.usage-jira:admin-web-resources")
-        .requireContext("atl.admin");
     resp.setContentType("text/html;charset=utf-8");
     templateRenderer.render(ADMIN_TEMPLATE, resp.getWriter());
   }

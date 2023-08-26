@@ -1,6 +1,6 @@
 package com.sds.jira.plugin.usage.domain;
 
-public class UserInfo {
+public class JiraUser {
   String lookupTime;
   String activeYn;
   String userId;

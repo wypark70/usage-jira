@@ -1,6 +1,6 @@
 package com.sds.jira.plugin.usage.domain;
 
-public class UserCount {
+public class JiraUserCount {
   String lookupTime;
   String total;
   String usage;

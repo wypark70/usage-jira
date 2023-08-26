@@ -9,10 +9,10 @@ import com.atlassian.sal.api.pluginsettings.PluginSettings;
 import com.atlassian.sal.api.pluginsettings.PluginSettingsFactory;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.sds.jira.plugin.usage.config.UsageJiraConfig;
-import com.sds.jira.plugin.usage.domain.SystemInfo;
-import com.sds.jira.plugin.usage.domain.UserCount;
-import com.sds.jira.plugin.usage.domain.UserCountRequest;
+import com.sds.jira.plugin.usage.config.UsageJiraConfiguration;
+import com.sds.jira.plugin.usage.domain.InterfaceSystemInfo;
+import com.sds.jira.plugin.usage.domain.JiraUserCount;
+import com.sds.jira.plugin.usage.domain.JiraUserCountRequest;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -27,8 +27,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class UserCountService extends AbstractService {
-  private static final String CLASS_NAME = UsageJiraConfig.class.getName();
+public class JiraUserCountService extends AbstractService {
+  private static final String CLASS_NAME = UsageJiraConfiguration.class.getName();
   private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
   private final PluginSettingsFactory pluginSettingsFactory = ComponentAccessor.getOSGiComponentInstanceOfType(PluginSettingsFactory.class);
   private final UserUtil userUtil = ComponentAccessor.getOSGiComponentInstanceOfType(UserUtil.class);
@@ -39,35 +39,35 @@ public class UserCountService extends AbstractService {
     PluginSettings settings = pluginSettingsFactory.createGlobalSettings();
     String userCountApiUrl = (String) settings.get(CLASS_NAME + ".userCountApiUrl");
     String userCountApiKey = (String) settings.get(CLASS_NAME + ".userCountApiKey");
-    SystemInfo systemInfo = new SystemInfo();
-    systemInfo.setHost((String) settings.get(CLASS_NAME + ".host"));
-    systemInfo.setIp((String) settings.get(CLASS_NAME + ".ip"));
-    systemInfo.setPort((String) settings.get(CLASS_NAME + ".port"));
-    systemInfo.setProductCode((String) settings.get(CLASS_NAME + ".productCode"));
+    InterfaceSystemInfo interfaceSystemInfo = new InterfaceSystemInfo();
+    interfaceSystemInfo.setHost((String) settings.get(CLASS_NAME + ".host"));
+    interfaceSystemInfo.setIp((String) settings.get(CLASS_NAME + ".ip"));
+    interfaceSystemInfo.setPort((String) settings.get(CLASS_NAME + ".port"));
+    interfaceSystemInfo.setProductCode((String) settings.get(CLASS_NAME + ".productCode"));
 
-    List<UserCount> userCountList = new ArrayList<>();
-    UserCount userCount = new UserCount();
-    userCount.setLookupTime(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
-    userCount.setTotal(String.valueOf(userUtil.getTotalUserCount()));
-    userCount.setUsage(String.valueOf(userUtil.getActiveUserCount()));
-    userCountList.add(userCount);
+    List<JiraUserCount> jiraUserCountList = new ArrayList<>();
+    JiraUserCount jiraUserCount = new JiraUserCount();
+    jiraUserCount.setLookupTime(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+    jiraUserCount.setTotal(String.valueOf(userUtil.getTotalUserCount()));
+    jiraUserCount.setUsage(String.valueOf(userUtil.getActiveUserCount()));
+    jiraUserCountList.add(jiraUserCount);
 
-    UserCountRequest userCountRequest = new UserCountRequest();
-    userCountRequest.setInfo(systemInfo);
-    userCountRequest.setList(userCountList);
+    JiraUserCountRequest jiraUserCountRequest = new JiraUserCountRequest();
+    jiraUserCountRequest.setInfo(interfaceSystemInfo);
+    jiraUserCountRequest.setList(jiraUserCountList);
     log.debug(">>>>>>> userCountApiUrl: " + userCountApiUrl);
     log.debug(">>>>>>> userCountApiKey: " + userCountApiKey);
-    log.debug(gson.toJson(userCountRequest));
+    log.debug(gson.toJson(jiraUserCountRequest));
 
     try {
-      postUserCountReport(userCountApiUrl, userCountApiKey, userCountRequest);
+      postUserCountReport(userCountApiUrl, userCountApiKey, jiraUserCountRequest);
     } catch (IOException e) {
       e.printStackTrace();
     }
   }
 
   @SuppressWarnings("DuplicatedCode")
-  private void postUserCountReport(String userCountApiUrl, String userCountApiKey, UserCountRequest userCountRequest) throws IOException {
+  private void postUserCountReport(String userCountApiUrl, String userCountApiKey, JiraUserCountRequest jiraUserCountRequest) throws IOException {
     URL url = new URL(userCountApiUrl);
     HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
 
@@ -79,7 +79,7 @@ public class UserCountService extends AbstractService {
     httpURLConnection.setDoOutput(true);
 
     try (OutputStream outputStream = httpURLConnection.getOutputStream()) {
-      byte[] input = gson.toJson(userCountRequest).getBytes(StandardCharsets.UTF_8);
+      byte[] input = gson.toJson(jiraUserCountRequest).getBytes(StandardCharsets.UTF_8);
       outputStream.write(input, 0, input.length);
     }
 

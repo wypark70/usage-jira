@@ -11,10 +11,10 @@ import com.atlassian.sal.api.pluginsettings.PluginSettings;
 import com.atlassian.sal.api.pluginsettings.PluginSettingsFactory;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.sds.jira.plugin.usage.config.UsageJiraConfig;
-import com.sds.jira.plugin.usage.domain.SystemInfo;
-import com.sds.jira.plugin.usage.domain.UserInfo;
-import com.sds.jira.plugin.usage.domain.UserInfoRequest;
+import com.sds.jira.plugin.usage.config.UsageJiraConfiguration;
+import com.sds.jira.plugin.usage.domain.InterfaceSystemInfo;
+import com.sds.jira.plugin.usage.domain.JiraUser;
+import com.sds.jira.plugin.usage.domain.JiraUserListRequest;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -30,8 +30,8 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
-public class UserListService extends AbstractService {
-  private static final String CLASS_NAME = UsageJiraConfig.class.getName();
+public class JiraUserListService extends AbstractService {
+  private static final String CLASS_NAME = UsageJiraConfiguration.class.getName();
   private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
   private final PluginSettingsFactory pluginSettingsFactory = ComponentAccessor.getOSGiComponentInstanceOfType(PluginSettingsFactory.class);
   private final UserUtil userUtil = ComponentAccessor.getOSGiComponentInstanceOfType(UserUtil.class);
@@ -42,44 +42,44 @@ public class UserListService extends AbstractService {
     PluginSettings settings = pluginSettingsFactory.createGlobalSettings();
     String userListApiUrl = (String) settings.get(CLASS_NAME + ".userListApiUrl");
     String userListApiKey = (String) settings.get(CLASS_NAME + ".userListApiKey");
-    SystemInfo systemInfo = new SystemInfo();
-    systemInfo.setHost((String) settings.get(CLASS_NAME + ".host"));
-    systemInfo.setIp((String) settings.get(CLASS_NAME + ".ip"));
-    systemInfo.setPort((String) settings.get(CLASS_NAME + ".port"));
-    systemInfo.setProductCode((String) settings.get(CLASS_NAME + ".productCode"));
+    InterfaceSystemInfo interfaceSystemInfo = new InterfaceSystemInfo();
+    interfaceSystemInfo.setHost((String) settings.get(CLASS_NAME + ".host"));
+    interfaceSystemInfo.setIp((String) settings.get(CLASS_NAME + ".ip"));
+    interfaceSystemInfo.setPort((String) settings.get(CLASS_NAME + ".port"));
+    interfaceSystemInfo.setProductCode((String) settings.get(CLASS_NAME + ".productCode"));
 
-    List<UserInfo> userInfoList = new ArrayList<>();
+    List<JiraUser> jiraUserList = new ArrayList<>();
     Collection<ApplicationUser> allUsers = userUtil.getAllApplicationUsers();
     String lookupTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
     String tenantCode = (String) settings.get(CLASS_NAME + ".tenantCode");
     String module = (String) settings.get(CLASS_NAME + ".module");
     allUsers.forEach(applicationUser -> {
-      UserInfo userInfo = new UserInfo();
-      userInfo.setLookupTime(lookupTime);
-      userInfo.setActiveYn(applicationUser.isActive() ? "Y" : "N");
-      userInfo.setUserId(applicationUser.getName());
-      userInfo.setUserName(applicationUser.getDisplayName());
-      userInfo.setTenantCode(tenantCode);
-      userInfo.setModule(module);
-      userInfoList.add(userInfo);
+      JiraUser jiraUser = new JiraUser();
+      jiraUser.setLookupTime(lookupTime);
+      jiraUser.setActiveYn(applicationUser.isActive() ? "Y" : "N");
+      jiraUser.setUserId(applicationUser.getName());
+      jiraUser.setUserName(applicationUser.getDisplayName());
+      jiraUser.setTenantCode(tenantCode);
+      jiraUser.setModule(module);
+      jiraUserList.add(jiraUser);
     });
 
-    UserInfoRequest userInfoRequest = new UserInfoRequest();
-    userInfoRequest.setInfo(systemInfo);
-    userInfoRequest.setList(userInfoList);
+    JiraUserListRequest jiraUserListRequest = new JiraUserListRequest();
+    jiraUserListRequest.setInfo(interfaceSystemInfo);
+    jiraUserListRequest.setList(jiraUserList);
     log.debug(">>>>>>> userListApiUrl: " + userListApiUrl);
     log.debug(">>>>>>> userListApiKey: " + userListApiKey);
-    log.debug(gson.toJson(userInfoRequest));
+    log.debug(gson.toJson(jiraUserListRequest));
 
     try {
-      postUserInfoReport(userListApiUrl, userListApiKey, userInfoRequest);
+      postUserInfoReport(userListApiUrl, userListApiKey, jiraUserListRequest);
     } catch (IOException e) {
       e.printStackTrace();
     }
   }
 
   @SuppressWarnings("DuplicatedCode")
-  private void postUserInfoReport(String userListApiUrl, String userListApiKey, UserInfoRequest userInfoRequest) throws IOException {
+  private void postUserInfoReport(String userListApiUrl, String userListApiKey, JiraUserListRequest jiraUserListRequest) throws IOException {
     URL url = new URL(userListApiUrl);
     HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
 
@@ -90,7 +90,7 @@ public class UserListService extends AbstractService {
     httpURLConnection.setDoOutput(true);
 
     try (OutputStream outputStream = httpURLConnection.getOutputStream()) {
-      byte[] input = gson.toJson(userInfoRequest).getBytes(StandardCharsets.UTF_8);
+      byte[] input = gson.toJson(jiraUserListRequest).getBytes(StandardCharsets.UTF_8);
       outputStream.write(input, 0, input.length);
     }
 
