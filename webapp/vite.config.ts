@@ -16,4 +16,15 @@ export default defineConfig({
     minify: false,
   },
   plugins: [svelte()],
+  server: {
+    proxy: {
+      '/jira': {
+        target: 'http://localhost:2990/',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/jira/, '/jira/'),
+        secure: false,
+        ws: true,
+      }
+    }
+  }
 })

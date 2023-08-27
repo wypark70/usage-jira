@@ -21,7 +21,7 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-@Path("/")
+@Path("/usage-jira-configuration")
 public class UsageJiraConfigurationController {
     private static final Logger log = LoggerFactory.getLogger(UsageJiraConfigurationController.class);
     private static final String CLASS_NAME = UsageJiraConfiguration.class.getName();
