@@ -5841,14 +5841,14 @@ function instance($$self, $$props, $$invalidate) {
     initialValues: { ...initialConfiguration },
     validationSchema: create$3().shape({
       host: create$6().trim().required(REQUIRED_FIELD),
-      ip: create$6().trim().matches(IP_REGX, "Invalid IP Address").required(REQUIRED_FIELD),
-      port: create$6().matches(PORT_REGX, "Invalid Port number").required(REQUIRED_FIELD),
+      ip: create$6().trim().required(REQUIRED_FIELD).matches(IP_REGX, "Invalid IP Address"),
+      port: create$6().required(REQUIRED_FIELD).matches(PORT_REGX, "Invalid Port number"),
       productCode: create$6().trim().required(REQUIRED_FIELD),
       module: create$6().trim().required(REQUIRED_FIELD),
       tenantCode: create$6().trim().required(REQUIRED_FIELD),
-      userListApiUrl: create$6().trim().url("Invalid URL").required(REQUIRED_FIELD),
+      userListApiUrl: create$6().trim().required(REQUIRED_FIELD).url("Invalid URL"),
       userListApiKey: create$6().trim().required(REQUIRED_FIELD),
-      userCountApiUrl: create$6().trim().url("Invalid URL").required(REQUIRED_FIELD),
+      userCountApiUrl: create$6().trim().required(REQUIRED_FIELD).url("Invalid URL"),
       userCountApiKey: create$6().trim().required(REQUIRED_FIELD)
     }),
     onSubmit: (values) => {

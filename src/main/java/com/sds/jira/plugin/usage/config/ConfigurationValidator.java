@@ -1,13 +1,11 @@
-package com.sds.jira.plugin.usage.util;
+package com.sds.jira.plugin.usage.config;
 
-import com.sds.jira.plugin.usage.config.Configuration;
-import com.sds.jira.plugin.usage.config.ConfigurationException;
 import org.apache.commons.lang3.StringUtils;
 
-public final class ConfigurationChecker {
+public final class ConfigurationValidator {
   private static final String LINE_SEPARATOR = System.lineSeparator();
 
-  private ConfigurationChecker() {
+  private ConfigurationValidator() {
   }
 
   public static void checkUsageJiraConfig(Configuration config) throws ConfigurationException {

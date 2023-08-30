@@ -1,4 +1,4 @@
-package com.sds.jira.plugin.usage.servlet;
+package com.sds.jira.plugin.usage.config;
 
 import com.atlassian.jira.permission.GlobalPermissionKey;
 import com.atlassian.jira.plugin.webfragment.conditions.cache.ConditionCacheKeys;

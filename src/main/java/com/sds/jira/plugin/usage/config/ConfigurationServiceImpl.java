@@ -5,7 +5,6 @@ import com.atlassian.plugin.spring.scanner.annotation.imports.ComponentImport;
 import com.atlassian.sal.api.pluginsettings.PluginSettings;
 import com.atlassian.sal.api.pluginsettings.PluginSettingsFactory;
 import com.atlassian.sal.api.transaction.TransactionTemplate;
-import com.sds.jira.plugin.usage.util.ConfigurationChecker;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -43,7 +42,7 @@ public class ConfigurationServiceImpl implements ConfigurationService {
 
     @Override
     public void updateConfiguration(Configuration configuration) {
-        ConfigurationChecker.checkUsageJiraConfig(configuration);
+        ConfigurationValidator.checkUsageJiraConfig(configuration);
         transactionTemplate.execute(() -> {
             PluginSettings pluginSettings = pluginSettingsFactory.createGlobalSettings();
             pluginSettings.put(CLASS_NAME + ".host", configuration.getHost());
