@@ -94,6 +94,32 @@
   <build>
     <plugins>
       <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-antrun-plugin</artifactId>
+        <version>1.5</version>
+        <executions>
+          <execution>
+            <id>exec-gen-sources</id>
+            <phase>generate-sources</phase>
+            <configuration>
+              <target name="Build Web">
+                <exec executable="cmd" dir="${project.basedir}/webapp"
+                      failonerror="true" osfamily="windows">
+                  <arg line="/c npm run build" />
+                </exec>
+                <exec executable="cmd" dir="${project.basedir}/webapp"
+                      failonerror="true" osfamily="windows">
+                  <arg line="/c copy .\dist\entries\index.js ..\src\main\resources\js\configuration.js" />
+                </exec>
+              </target>
+            </configuration>
+            <goals>
+              <goal>run</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
         <groupId>com.atlassian.maven.plugins</groupId>
         <artifactId>jira-maven-plugin</artifactId>
         <version>${amps.version}</version>
@@ -112,6 +138,7 @@
           </pluginArtifacts>
           -->
           <enableQuickReload>true</enableQuickReload>
+          <compressResources>false</compressResources>
 
           <!-- See here for an explanation of default instructions: -->
           <!-- https://developer.atlassian.com/docs/advanced-topics/configuration-of-instructions-in-atlassian-plugins -->

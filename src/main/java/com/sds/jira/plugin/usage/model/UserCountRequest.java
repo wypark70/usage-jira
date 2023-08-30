@@ -1,10 +1,10 @@
-package com.sds.jira.plugin.usage.domain;
+package com.sds.jira.plugin.usage.model;
 
 import java.util.List;
 
-public class JiraUserListRequest {
+public class UserCountRequest {
   InterfaceSystemInfo info;
-  List<JiraUser> list;
+  List<UserCount> list;
 
   public InterfaceSystemInfo getInfo() {
     return info;
@@ -14,11 +14,11 @@ public class JiraUserListRequest {
     this.info = info;
   }
 
-  public List<JiraUser> getList() {
+  public List<UserCount> getList() {
     return list;
   }
 
-  public void setList(List<JiraUser> list) {
+  public void setList(List<UserCount> list) {
     this.list = list;
   }
 }

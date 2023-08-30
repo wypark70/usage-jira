@@ -1,0 +1,10 @@
+<someservice id="user-list-service">
+    <description>User List Service</description>
+    <properties>
+        <property>
+            <key>user-list-service</key>
+            <name>User List Service</name>
+            <type>string</type>
+        </property>
+    </properties>
+</someservice>

@@ -9,30 +9,31 @@
 
   <resource type="i18n" name="i18n" location="usage-jira"/>
 
-  <web-resource key="usage-jira-configuration-web-resources" name="Admin Web Resources">
+  <web-resource key="configuration-web-resources" name="Web Resources">
     <dependency>com.atlassian.auiplugin:ajs</dependency>
-    <resource type="download" name="usage-jira-configuration.css" location="/css/usage-jira-configuration.css"/>
-    <resource type="download" name="usage-jira-configuration.js" location="/js/usage-jira-configuration.js"/>
+    <resource type="download" name="configuration.css" location="/css/configuration.css"/>
+    <resource type="download" name="configuration.js" location="/js/configuration.js"/>
     <resource type="download" name="images/" location="/images"/>
     <context>usage-jira-configuration</context>
   </web-resource>
 
-  <rest key="rest" name="Usage Jira Rest" path="/usage-jira" version="1.0">
-    <description>Provides REST resources for the admin UI.</description>
+  <rest key="rest" name="Rest" path="/usage-jira" version="1.0">
+    <package>com.sds.jira.plugin.usage</package>
+    <description>Provides REST resources for the configuration.</description>
   </rest>
 
   <servlet
-      name="Usage Jira Configuration Servlet"
+      name="Configuration Servlet"
       i18n-name-key="usage-jira-admin-configuration.name"
       key="usage-jira-admin-configuration"
-      class="com.sds.jira.plugin.usage.servlet.UsageJiraConfigurationServlet">
+      class="com.sds.jira.plugin.usage.servlet.ConfigurationServlet">
     <description key="usage-jira-admin-configuration.description">Usage Jira Config Servlet</description>
     <url-pattern>/usage-jira/configuration</url-pattern>
   </servlet>
 
   <web-item
       key="jira-menu-item"
-      name="Usage Jira Configuration Web Item"
+      name="Configuration Web Item"
       section="system.admin/globalsettings"
       weight="10"
       application="jira">

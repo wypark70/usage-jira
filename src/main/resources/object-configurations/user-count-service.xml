@@ -1,0 +1,10 @@
+<someservice id="user-count-service">
+    <description>User Count Service</description>
+    <properties>
+        <property>
+            <key>user-count-service</key>
+            <name>User Count Service</name>
+            <type>string</type>
+        </property>
+    </properties>
+</someservice>

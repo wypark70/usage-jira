@@ -1,0 +1,11 @@
+<html lang="en">
+<head>
+    <title>Usage jira admin config</title>
+    <meta name="decorator" content="atl.admin">
+</head>
+<body>
+<div id="app"></div>
+<script type="module" src="$webResourcePath/configuration.js"></script>
+<link rel="stylesheet" href="$webResourcePath/configuration.css">
+</body>
+</html>
